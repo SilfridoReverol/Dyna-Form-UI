@@ -4,34 +4,60 @@
   rel="stylesheet"
 />
 
-<ion-header>
-  <ion-toolbar color="dark">
+<ion-header class="ion-no-border">
+  <ion-toolbar color="transparent">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/places"></ion-back-button>
+      <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
-    <ion-title class="custom-font"> Ingresa Tus Datos </ion-title>
+    <ion-title class="custom-font">Ingresa Tus Datos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-row>
-    <ion-col>
-      <ion-card>
-        <ion-card-content>
-          <ion-input type="text" placeholder="Write a Title" #title>
-          </ion-input>
-          <hr />
-          <ion-input
-            type="text"
-            placeholder="http://imagewebsite.com"
-            #imageURL
-          ></ion-input>
-          <hr />
-          <ion-button color="success" (click)="saveNewPlace(title, imageURL)"
-            >Save</ion-button
-          >
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+<ion-content class="ion-padding ion-text-center">
+  <div class="form">
+    <ion-item>
+      <ion-input type="text" placeholder="Nombre" required="true" #firstname>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="Apellido" required="true" #lastname>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="Username" required="true" #username>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="email" placeholder="Email" required="true" #email>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select type="password" placeholder="Sexo" required="true" #sex>
+        <ion-select-option value="mujer">Mujer</ion-select-option>
+        <ion-select-option value="hombre">Hombre</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Edad" required="true" #age>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="password"
+        placeholder="Contraseña"
+        required="true"
+        #password
+      >
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="dark">Registrate</ion-button>
+  </div>
 </ion-content>
