@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "DynamicForms",
+  "appName": "DynaForms",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

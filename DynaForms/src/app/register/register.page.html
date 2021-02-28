@@ -1,0 +1,37 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Jura:wght@600&display=swap"
+  rel="stylesheet"
+/>
+
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="custom-font"> Ingresa Tus Datos </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text" placeholder="Write a Title" #title>
+          </ion-input>
+          <hr />
+          <ion-input
+            type="text"
+            placeholder="http://imagewebsite.com"
+            #imageURL
+          ></ion-input>
+          <hr />
+          <ion-button color="success" (click)="saveNewPlace(title, imageURL)"
+            >Save</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
