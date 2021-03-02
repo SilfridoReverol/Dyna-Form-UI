@@ -15,17 +15,21 @@
         class="custom-font"
         placeholder="Ingresa tu usuario"
         type="text"
+        [(ngModel)]="user.userName" 
+        required 
+        name="userName"
       >
       </ion-input>
     </ion-item>
     <br />
     <ion-item lines="none">
-      <ion-input class="custom-font" placeholder="Contraseña" type="password">
+      <ion-input class="custom-font" placeholder="Contraseña" type="password"
+      [(ngModel)]="user.password" required name="password">
       </ion-input>
     </ion-item>
 
     <br />
-    <ion-button class="elbuton custom-font" color="dark" expand="block"
+    <ion-button class="elbuton custom-font" color="dark" expand="block" (click)="login()"
       >Inicia Sesión</ion-button
     >
   </div>
