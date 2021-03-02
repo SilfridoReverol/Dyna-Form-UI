@@ -16,27 +16,27 @@
 <ion-content class="ion-padding ion-text-center">
   <div class="form">
     <ion-item>
-      <ion-input type="text" placeholder="Nombre" required="true" #firstname>
+      <ion-input type="text" placeholder="Nombre" required="true" [(ngModel)]="user.firstName">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input type="text" placeholder="Apellido" required="true" #lastname>
+      <ion-input type="text" placeholder="Apellido" required="true" [(ngModel)]="user.lastName">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input type="text" placeholder="Username" required="true" #username>
+      <ion-input type="text" placeholder="Username" required="true" [(ngModel)]="user.userName">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input type="email" placeholder="Email" required="true" #email>
+      <ion-input type="email" placeholder="Email" required="true" [(ngModel)]="user.email">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-select type="password" placeholder="Sexo" required="true" #sex>
+      <ion-select type="password" placeholder="Sexo" required="true" [(ngModel)]="user.sex">
         <ion-select-option value="mujer">Mujer</ion-select-option>
         <ion-select-option value="hombre">Hombre</ion-select-option>
         <ion-select-option value="otro">Otro</ion-select-option>
@@ -44,7 +44,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-input type="number" placeholder="Edad" required="true" #age>
+      <ion-input type="number" placeholder="Edad" required="true" [(ngModel)]="user.age">
       </ion-input>
     </ion-item>
 
@@ -53,12 +53,14 @@
         type="password"
         placeholder="Contraseña"
         required="true"
-        #password
+        [(ngModel)]="user.password"
       >
       </ion-input>
     </ion-item>
 
-    <ion-button expand="block" color="dark">Registrate</ion-button>
+    <ion-button expand="block" color="dark" (click)= "register()" >Registrate</ion-button>
     <ion-button expand="block" color="dark" (click)="logout()">Logout</ion-button>
+    <ion-button class="elbuton custom-font" color="dark" expand="block" (click)="testName()">say my name</ion-button
+  >
   </div>
 </ion-content>

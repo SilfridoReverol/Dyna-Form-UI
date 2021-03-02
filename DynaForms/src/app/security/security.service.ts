@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppUserAuth } from './app-user-auth';
 import { BehaviorSubject, Observable, of} from 'rxjs';
-import { AppUser} from './app-user';
+import { AppUser, UserRegister} from './app-user';
 import { Platform } from '@ionic/angular';
 import { Storage} from '@ionic/storage';
 import { LOGIN_MOCKS } from './login-mocks';
@@ -50,6 +50,32 @@ export class SecurityService {
   //   }
   //   return of<AppUserAuth>(this.securityObject);
   // }
+
+
+  testName(){
+    return this.storage.get(TOKEN_KEY).then(res =>{
+      if(res){
+        
+        console.log(res);
+
+        const headers = { 'Authorization': 'Bearer ' + res  };
+        const body = '';
+        this.httpClient.post<any>('https://localhost:44359/API/Test/method2', body, { headers }).subscribe(data => {
+        console.log(data);
+      });
+
+        //this.authenticationState.next(true);
+      }
+    })
+  }
+
+  register(entity: UserRegister) {
+    const body = "firstname=" + entity.firstName + "lastname=" + entity.lastName + "username=" + entity.userName + "email=" + entity.email + "sex=" + entity.sex + "age=" + entity.sex  + "password=" + entity.password;
+    
+    console.log(body)
+
+  }
+
 
   login(entity: AppUser){
     this.resetSecurityObject();

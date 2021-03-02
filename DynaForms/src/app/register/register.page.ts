@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SecurityService } from '../security/security.service';
+import { UserRegister } from '../security/app-user'
 
 @Component({
   selector: 'app-register',
@@ -9,12 +10,22 @@ import { SecurityService } from '../security/security.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  registerForm: FormGroup;
+  user: UserRegister = new UserRegister();
+
+  //registerForm: FormGroup;
   constructor(private securityService: SecurityService) {}
 
   ngOnInit() {}
 
+  register() {
+    this.securityService.register(this.user)
+  }
+
   logout(){
     this.securityService.logout();
+  }
+
+  testName(){
+    this.securityService.testName();
   }
 }

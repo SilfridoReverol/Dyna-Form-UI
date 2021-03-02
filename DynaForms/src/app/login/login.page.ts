@@ -19,6 +19,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  testName(){
+    this.securityService.testName();
+  }
+
 
 
   login(){
