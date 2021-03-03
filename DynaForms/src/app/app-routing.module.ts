@@ -22,7 +22,13 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterPageModule),
+  },  {
+    path: 'dynahome',
+    loadChildren: () => import('./dynahome/dynahome.module').then( m => m.DynahomePageModule)
   },
+
+
+
   // {
   //   path: 'mainpage', component: MainpageComponent
   // }

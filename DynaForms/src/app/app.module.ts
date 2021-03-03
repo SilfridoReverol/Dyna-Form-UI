@@ -11,6 +11,9 @@ import {  HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { RegisterPageModule} from './register/register.module'
 
+import {  ReactiveFormsModule } from "@angular/forms";
+
+
 
 
 
@@ -18,7 +21,7 @@ import { RegisterPageModule} from './register/register.module'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), HttpClientModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

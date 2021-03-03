@@ -1,0 +1,49 @@
+[
+    {
+        "key":"email",
+        "type":"input",
+        "options":{
+            "label":"your best email",
+            "placeholder": "foo@bar.com",
+            "required": true
+        }
+    },
+    {
+        "key":"password",
+        "type":"input",
+        "options":{
+            "label":"Min. 6 characters",
+            "placeholder": "123456",
+            "required": true,
+            "type": "password"
+        }
+    },
+    {
+        "key":"notas",
+        "type":"text",
+        "options":{
+            "label":"some note for us"
+        }
+    },
+    {
+        "key":"newletter",
+        "type":"boolean",
+        "options": {
+            "label":"subscribe to our newsletter"
+        }
+    },
+    {
+        "key":"almuerzo",
+        "type":"boolean",
+        "options": {
+            "label":"Ud. almorzó?"
+        }
+    },
+    {
+        "key":"birthday",
+        "type":"date",
+        "options":{
+            "label":"your birthday"
+        }
+    }
+]

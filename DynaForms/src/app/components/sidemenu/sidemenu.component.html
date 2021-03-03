@@ -13,10 +13,10 @@
       <ion-button expand="block" color="tertiary">Create Submenu</ion-button>
     </ion-list>
     <ion-list *ngIf="appUser.userRole === 0">
-      <ion-button expand="block" color="tertiary">Update Info</ion-button>
-      <br/>
-      <br/>
-      <ion-button expand="block" color="tertiary">Fill Forms</ion-button>
+     
+        <ion-button *ngFor = "let form of allForms" expand="block" (click)="gotoForm(form.form_name)" >
+          <small>{{form.form_description}}</small>
+        </ion-button>
     </ion-list>
     <br/>
   </ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>dynahome</ion-title>
+    <ion-buttons slot="start">
+      <ion-button slot="only-icon" (click)="goToHome()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <ion-item *ngFor="let c of simpleForm">
+      <ion-label position="stacked">
+        {{c.options.label}}
+      </ion-label>
+      <div [ngSwitch]="c.type">
+        <ion-toggle *ngSwitchCase="'boolean'" [formControlName]="c.key"></ion-toggle>
+        <ion-datetime *ngSwitchCase="'date'" [formControlName]="c.key"></ion-datetime>
+        <ion-textarea *ngSwitchCase="'text'" [formControlName]="c.key"></ion-textarea>
+        <ion-input *ngSwitchCase="'input'" [formControlName]="c.key" [type]="c.options.type ? c.options.type : 'text'"
+          [placeholder]="c.options.placeholder"></ion-input>
+      </div>
+    </ion-item>
+    <ion-button type="submit" expand="block" [disabled]="!myForm.valid">Submit!</ion-button>
+  </form>
+</ion-content>

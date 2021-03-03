@@ -79,7 +79,7 @@ export class SecurityService {
     const body = entity;
     
     console.log(body);
-    this.httpClient.post<any>('https://localhost:44359/api/test/register', body).subscribe(data => {
+    this.httpClient.post<any>('https://serpca.com.ve/S3WebService/api/test/register', body).subscribe(data => {
       if(data){
         console.log(data);
         this.nav.navigateRoot('/login')
@@ -107,6 +107,15 @@ export class SecurityService {
   }
 
 
+  getForm(formName){
+    this.storage.get(TOKEN_KEY).then(res=>{
+      const headers = { 'Authorization': 'Bearer ' + res  };
+      const body = '';
+       return this.httpClient.post<any>('https://serpca.com.ve/S3WebService/api/test/GetForm?formName='+formName, body, { headers })
+   })
+  } 
+
+
   async getCurrentUser():Promise<string>{
     var response;
     await this.storage.get(USER_KEY).then((result)=>{
@@ -123,14 +132,16 @@ export class SecurityService {
 
     console.log(JSON.stringify(body));
 
-  
-    this.httpClient.post<any>('https://localhost:44359/token', body).subscribe(data => {
+    
+//this.httpClient.post<any>('https://localhost:44359/token', body).subscribe(data => {
+
+    this.httpClient.post<any>('https://serpca.com.ve/S3WebService/token', body).subscribe(data => {
       if(data){
         console.log(data.access_token);
          this.storage.set(TOKEN_KEY, data.access_token).then(res=>{
           this.authenticationState.next(true);
           const headers = { 'Authorization': 'Bearer ' + data.access_token };
-          this.httpClient.post<any>('https://localhost:44359/api/test/GetUser',entity, {headers}).subscribe(resp_user=>{
+          this.httpClient.post<any>('https://serpca.com.ve/S3WebService/api/test/GetUser',entity, {headers}).subscribe(resp_user=>{
             if(resp_user){
               this.storage.set(USER_KEY,resp_user).then(()=>{
                 this.appUser
