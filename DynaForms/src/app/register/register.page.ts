@@ -13,7 +13,7 @@ export class RegisterPage implements OnInit {
   user: UserRegister = new UserRegister();
 
   //registerForm: FormGroup;
-  constructor(private securityService: SecurityService) {}
+  constructor(private securityService: SecurityService, private nav: NavController) {}
 
   ngOnInit() {}
 
@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
   }
 
   logout(){
-    this.securityService.logout();
+    this.securityService.logout()
   }
 
   testName(){

@@ -1,24 +1,20 @@
-<app-menu></app-menu>
-
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <app-barrasuperior></app-barrasuperior> -->
 
 
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content>
+  
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-menu-button color="primary" menu="mymenu"></ion-menu-button>
+        </ion-button>
+      </ion-buttons>
+      <ion-title size="large">Welcome 
+        {{appUser.firstName}}
+      </ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <app-sidemenu></app-sidemenu>
+  
 </ion-content>

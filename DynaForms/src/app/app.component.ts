@@ -23,10 +23,11 @@ export class AppComponent {
       this.platformL.ready().then(()=>{
         this.securityService.authenticationState.subscribe(state=>{
           if(state){
-            this.router.navigate(['register']);
+            //this.router.navigate(['home']);
+            return true;
           }
           else{
-            this.router.navigate(['login']);
+            //this.router.navigate(['login']);
           }
         });
       });

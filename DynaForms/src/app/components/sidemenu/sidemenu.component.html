@@ -1,0 +1,33 @@
+<ion-menu side="start" menuId="mymenu" contentId="main">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-title *ngIf="appUser.userRole === 1" >Admin Menu</ion-title>
+      <ion-title *ngIf = "appUser.userRole === 0"> User Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content >
+    <ion-list *ngIf="appUser.userRole === 1">
+      <ion-button expand="block" color="tertiary">Create Form</ion-button>
+      <br/>
+      <br/>
+      <ion-button expand="block" color="tertiary">Create Submenu</ion-button>
+    </ion-list>
+    <ion-list *ngIf="appUser.userRole === 0">
+      <ion-button expand="block" color="tertiary">Update Info</ion-button>
+      <br/>
+      <br/>
+      <ion-button expand="block" color="tertiary">Fill Forms</ion-button>
+    </ion-list>
+    <br/>
+  </ion-content>
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      
+      
+        <ion-button (click)="logout()" expand="block" color="danger">
+          LOGOUT
+        </ion-button>
+     
+    </ion-toolbar>
+  </ion-footer>
+</ion-menu>

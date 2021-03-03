@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from "@ionic/storage";
 import {  HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { RegisterPageModule} from './register/register.module'
 
 
 

@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+       {{appUser.userName}}<br>
+      {{appUser.firstName}}
+    </ion-title>
+    <ion-buttons>
+      <ion-button  slot="start" *ngIf="appUser.userRole===1">
+        <ion-icon name="menu-outline" slot="icon-only" name="sidemenu" (click)="bringmenu()"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { AppUserAuth } from './app-user-auth';
 import { BehaviorSubject, Observable, of} from 'rxjs';
 import { AppUser, UserRegister} from './app-user';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { Storage} from '@ionic/storage';
 import { LOGIN_MOCKS } from './login-mocks';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 
 
-const TOKEN_KEY = 'auth-token';
+const TOKEN_KEY = 'auth-token',
+  USER_KEY = 'user_storage';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,11 @@ const TOKEN_KEY = 'auth-token';
 export class SecurityService {
   securityObject: AppUserAuth = new AppUserAuth();
   authenticationState = new BehaviorSubject (false);
+  appUser: AppUser = new AppUser();
 
 
-  constructor(private storage: Storage, private plt: Platform, private httpClient: HttpClient) { 
+
+  constructor(private storage: Storage, private plt: Platform, private httpClient: HttpClient, private nav: NavController, private router: Router) { 
     this.plt.ready().then(()=>{
       this.checkToken();
     })
@@ -70,12 +74,47 @@ export class SecurityService {
   }
 
   register(entity: UserRegister) {
-    const body = "firstname=" + entity.firstName + "lastname=" + entity.lastName + "username=" + entity.userName + "email=" + entity.email + "sex=" + entity.sex + "age=" + entity.sex  + "password=" + entity.password;
+    //const body = "firstname=" + entity.firstName + "lastname=" + entity.lastName + "username=" + entity.userName + "email=" + entity.email + "sex=" + entity.sex + "age=" + entity.sex  + "password=" + entity.password;
+    //const body =  JSON.stringify(entity);
+    const body = entity;
     
+    console.log(body);
+    this.httpClient.post<any>('https://localhost:44359/api/test/register', body).subscribe(data => {
+      if(data){
+        console.log(data);
+        this.nav.navigateRoot('/login')
+         //this.storage.set(TOKEN_KEY, data.access_token).then(res=>{
+          //this.authenticationState.next(true);
+        //});
+      }
+      
+    })
+
+    
+
     console.log(body)
 
   }
 
+
+  async getCurrentMyUser():Promise<AppUser>{
+    var response;
+    await this.storage.get(USER_KEY).then((result)=>{
+      response =  result[0];
+    })
+    console.log(response.userName);
+    return response;
+  }
+
+
+  async getCurrentUser():Promise<string>{
+    var response;
+    await this.storage.get(USER_KEY).then((result)=>{
+      response =  result[0];
+    })
+    console.log(response.userName);
+    return response.userName;
+  }
 
   login(entity: AppUser){
     this.resetSecurityObject();
@@ -90,6 +129,16 @@ export class SecurityService {
         console.log(data.access_token);
          this.storage.set(TOKEN_KEY, data.access_token).then(res=>{
           this.authenticationState.next(true);
+          const headers = { 'Authorization': 'Bearer ' + data.access_token };
+          this.httpClient.post<any>('https://localhost:44359/api/test/GetUser',entity, {headers}).subscribe(resp_user=>{
+            if(resp_user){
+              this.storage.set(USER_KEY,resp_user).then(()=>{
+                this.appUser
+                this.storage.get(USER_KEY).then((sto)=>console.log(sto));
+                this.router.navigate(['/home'])
+              });
+            }
+          });
         });
       }
       
@@ -133,8 +182,10 @@ export class SecurityService {
 
   logout(): void {
     this.resetSecurityObject();
+    this.storage.remove(USER_KEY);
     this.storage.remove(TOKEN_KEY).then(()=>{
       this.authenticationState.next(false);
+      //this.nav.navigateRoot('/login');
     });
     
   }

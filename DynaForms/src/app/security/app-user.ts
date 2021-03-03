@@ -1,6 +1,9 @@
 export class AppUser  {
     userName: string = "";
     password: string = "";
+    firstName: string = "";
+    lastName: string = "";
+    userRole: number = 0;
 }
 
 export class UserRegister {
